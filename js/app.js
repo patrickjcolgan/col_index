@@ -2,7 +2,7 @@
 var allCities [];
 
 //Object Constructor function to store city data
-function City(city, state, income, longitude, latitude) {//do we need parameters??
+function City(city, state, income, longitude, latitude, grocery, housing, utilities, transportation, healthcare, miscellaneous) {//do we need parameters??
   this.city = city;
   this.state = state;
   this.income = income;
@@ -18,3 +18,6 @@ function City(city, state, income, longitude, latitude) {//do we need parameters
 
 //Google Maps
 var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+//new instances
+//new cityName = new City ()
