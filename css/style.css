@@ -1,3 +1,44 @@
 body {
 
 }
+
+#googlemapsbackground {
+  height: 100%;
+  width: 100%;
+  position:absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+#menu {
+  position: relative;
+    z-index: 1;
+}
+
+#menu nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#menu a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+  button {
+    position: relative;
+      z-index: 2;
+      width: 300px;
+      margin: 60px auto 0;
+      padding: 10px;
+      background: black;
+      height: auto;
+      opacity: .45;
+      color: white;
+  }
