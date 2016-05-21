@@ -24,13 +24,6 @@ function Metro(name, metroArea, state, colIndex, income, longitude, latitude, gr
 //new instances
 //new cityName = new City ()
 
-var map;
-function initMap() {
-  map = new google.maps.Map(document.getElementById('googlemapsbackground'), {
-    center: {lat: 47.6062, lng: -122.3321},
-    zoom: 10
-  });
-}
 //new MetroName = new Metro ()
 var AkronOH = new Metro("AkronOH", "Akron", "OH", 100.2, 50100, 6831.5, 14456.5, 5395, 6426, 1736, 15360, 41.081445, -81.519005);
 var AlbanyNY = new Metro("AlbanyNY", "Albany", "NY", 108.1, 54050, 6825, 16327, 5050, 6168, 2234, 17376, 42.652579, -73.756232);
