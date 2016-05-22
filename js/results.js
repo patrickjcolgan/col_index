@@ -10,15 +10,18 @@ document.getElementById('indexSearch').addEventListener('submit', function(event
 });
 //Get data for current location to render in bar chart
 
-//Check duplication
-function checkDup (arr1, arr2){
-  return arr1.some(function(arrVal) {
-    return arr2 === arrVal;
-  });
-}
-
 //Match userInput with cities to suggest: create function MatchInput callinside listener
 var resultsArr = [];
+
+function checkDupArray (array1, array2){
+  if (array1.indexOf(array2) === -1){
+    array1.push(array2);
+    console.log('new array is ' + array1);
+  } else if (array1.indexOf(array2) > -1){
+    console.log(array2 + 'already exists in the array');
+  }
+}
+
 matchInput = function(range){
   userInput = parseInt(userInput);
   var lowerIncomeRange = userInput - parseInt(range);
@@ -28,19 +31,8 @@ matchInput = function(range){
 
   for (var i = 0; i < allMetro.length; i++){
     if (lowerIncomeRange < allMetro[i].income && allMetro[i].income < higherIncomeRange){
-      // checkDup(resultsArr, allMetro[i].name)
-      // if (checkDup === false){
-      resultsArr.push(allMetro[i].name);
+      //resultsArr.push(allMetro[i].name);
+      checkDupArray(resultsArr, allMetro[i].name);
       }
     }
-  // }
-};
-  // if (resultsArr.length < 5){
-  //   matchInput(2500)
-  // }
-  // if (resultsArr.length < 5){
-  //   matchInput(5000)
-  // }
-
-
-// var resultArray = [];
+  };
