@@ -3,10 +3,14 @@
 document.getElementById('indexSearch').addEventListener('submit', function(event){
   event.preventDefault();
   userInput = event.target.income.value;
-  console.log(userInput);
-  var locationInput = event.target.location.value;
-  console.log(locationInput);
-  matchInput(1000);
+  if (userInput >= 40000){
+    // console.log(userInput);
+    var locationInput = event.target.location.value;
+    // console.log(locationInput);
+    matchInput(5000);
+  } else {
+    alert('Please enter at least $40,000');
+  }
 });
 //Get data for current location to render in bar chart
 
@@ -29,10 +33,9 @@ matchInput = function(range){
   console.log(lowerIncomeRange);
   console.log(higherIncomeRange);
 
-  for (var i = 0; i < allMetro.length; i++){
-    if (lowerIncomeRange < allMetro[i].income && allMetro[i].income < higherIncomeRange){
-      //resultsArr.push(allMetro[i].name);
-      checkDupArray(resultsArr, allMetro[i].name);
+    for (var i = 0; i < allMetro.length; i++){
+      if (lowerIncomeRange < allMetro[i].income && allMetro[i].income < higherIncomeRange){
+        checkDupArray(resultsArr, allMetro[i].name);
       }
     }
   };
