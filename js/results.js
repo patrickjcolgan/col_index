@@ -1,5 +1,4 @@
 //event listener
-// var userInput = document.getElementById('income');
 document.getElementById('indexSearch').addEventListener('submit', function(event){
   event.preventDefault();
   userInput = event.target.income.value;
@@ -12,20 +11,26 @@ document.getElementById('indexSearch').addEventListener('submit', function(event
     alert('Please enter at least $40,000');
   }
 });
-//Get data for current location to render in bar chart
 
-//Match userInput with cities to suggest: create function MatchInput callinside listener
 var resultsArr = [];
-
+//checks for duplications in resultsArr
 function checkDupArray (array1, array2){
   if (array1.indexOf(array2) === -1 && array1.length < 5){
     array1.push(array2);
     console.log('new array is ' + array1);
+    if (array1.length < 5){
+      matchInput(10000);
+    } if (array1.length < 5){
+      matchInput(15000);
+    } if (array1.length < 5){
+      matchInput(20000);
+    }
   } else if (array1.indexOf(array2) > -1){
     console.log(array2 + 'already exists in the array');
   }
-}
+};
 
+//matches userInput with suggested cities based on cost of living
 matchInput = function(range){
   userInput = parseInt(userInput);
   var lowerIncomeRange = userInput - parseInt(range);
@@ -36,9 +41,8 @@ matchInput = function(range){
     for (var i = 0; i < allMetro.length; i++){
       if (lowerIncomeRange < allMetro[i].income && allMetro[i].income < higherIncomeRange){
         checkDupArray(resultsArr, allMetro[i].name);
-        if (resultsArr > 5){
-          break;
-        }
       }
     }
   };
+
+  //Get data for current location to render in bar chart
