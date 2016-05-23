@@ -18,7 +18,7 @@ document.getElementById('indexSearch').addEventListener('submit', function(event
 var resultsArr = [];
 
 function checkDupArray (array1, array2){
-  if (array1.indexOf(array2) === -1){
+  if (array1.indexOf(array2) === -1 && array1.length < 5){
     array1.push(array2);
     console.log('new array is ' + array1);
   } else if (array1.indexOf(array2) > -1){
@@ -36,6 +36,9 @@ matchInput = function(range){
     for (var i = 0; i < allMetro.length; i++){
       if (lowerIncomeRange < allMetro[i].income && allMetro[i].income < higherIncomeRange){
         checkDupArray(resultsArr, allMetro[i].name);
+        if (resultsArr > 5){
+          break;
+        }
       }
     }
   };
