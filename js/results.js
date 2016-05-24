@@ -1,6 +1,21 @@
 var dupeState;
 var resultsArr = [];
 
+var data = {
+    labels: randomArr;
+    datasets: [
+        {
+            label: "My First dataset",
+            backgroundColor: "rgba(255,99,132,0.2)",
+            borderColor: "rgba(255,99,132,1)",
+            borderWidth: 1,
+            hoverBackgroundColor: "rgba(255,99,132,0.4)",
+            hoverBorderColor: "rgba(255,99,132,1)",
+            data: [],
+        }
+    ]
+};
+
 //event listener
 document.getElementById('indexSearch').addEventListener('submit', function(event) {
   event.preventDefault();
@@ -28,6 +43,7 @@ document.getElementById('indexSearch').addEventListener('submit', function(event
     console.log(dupeState);
     matchInput(20000);
   }
+  barChartResults();
 });
 
 //checks for duplications in resultsArr
@@ -66,3 +82,12 @@ function initMap() {
     zoom: 10
   });
 }
+
+//Bar Chart
+barChartResults = function(){
+  var ctx = document.getElementById('barContainer').getContext('2d');
+        var barContainer = new Chart(ctx, {
+					type: 'bar',
+					data: data,
+				});
+};
