@@ -1,3 +1,64 @@
+var dupeState;
+var resultsArr = [];
+
+//event listener
+document.getElementById('indexSearch').addEventListener('submit', function(event) {
+  event.preventDefault();
+  userInput = event.target.income.value;
+  if (userInput >= 40000) {
+    // console.log(userInput);
+    var locationInput = event.target.location.value;
+    // console.log(locationInput);
+    matchInput(1000);
+  } else {
+    alert('Please enter at least $40,000');
+  }
+  if (resultsArr.length < 10) {
+    console.log('2500');
+    console.log(dupeState);
+    matchInput(5000);
+  }
+  if (resultsArr.length < 10) {
+    console.log('5000');
+    console.log(dupeState);
+    matchInput(10000);
+  }
+  if (resultsArr.length < 10) {
+    console.log('10000');
+    console.log(dupeState);
+    matchInput(20000);
+  }
+});
+
+//checks for duplications in resultsArr
+function checkDupArray(array1, array2) {
+  if (array1.indexOf(array2) === -1) {
+    console.log('new array is ' + array1);
+    dupeState = true;
+  } else if (array1.indexOf(array2) > -1) {
+    console.log(array2 + 'already exists in the array');
+    dupeState = false;
+  }
+};
+
+//matches userInput with suggested cities based on cost of living
+matchInput = function(range) {
+  userInput = parseInt(userInput);
+  var lowerIncomeRange = userInput - parseInt(range);
+  var higherIncomeRange = userInput + parseInt(range);
+  for (var i = 0; i < allMetro.length; i++) {
+    if (lowerIncomeRange < allMetro[i].income && allMetro[i].income < higherIncomeRange) {
+      checkDupArray(resultsArr, allMetro[i].name);
+      console.log('dupestate succssfully processed');
+      if (dupeState === true) {
+        resultsArr.push(allMetro[i].name);
+        console.log(dupeState);
+        console.log(resultsArr.length);
+      }
+    }
+  }
+};
+
 var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('googleMapResults'), {
@@ -5,16 +66,3 @@ function initMap() {
     zoom: 10
   });
 }
-//
-// var resultArray [];
-// var getIncome = document.getElementById('income');
-// var lowerIncomeRange = getIncome - 5000;
-// var higherIncomeRange = getIncome + 5000;
-//
-// for (var i in allMetro) {
-//   if (lowerIncomeRange < allMetro.income[i] && allMetro.income[i] < higherIncomeRange) {
-//     var metroResult = allMetro[i].name;
-//     metroResult.push(allMetro[i].name);
-//     push.resultArray;
-//   }
-// }
