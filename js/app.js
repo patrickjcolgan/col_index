@@ -18,6 +18,7 @@ function Metro(name, metroArea, state, colIndex, income, longitude, latitude, gr
   this.latitude = latitude;
   allMetro.push(this);
 };
+
 //Google Maps
 // var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 

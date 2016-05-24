@@ -21,10 +21,13 @@ function checkDupArray (array1, array2){
     console.log('new array is ' + array1);
     if (array1.length < 5){
       matchInput(10000);
+      console.log('10k');
     } if (array1.length < 5){
       matchInput(15000);
+      console.log('15k');
     } if (array1.length < 5){
       matchInput(20000);
+      console.log('20k');
     }
   } else if (array1.indexOf(array2) > -1){
     console.log(array2 + 'already exists in the array');
@@ -36,8 +39,8 @@ matchInput = function(range){
   userInput = parseInt(userInput);
   var lowerIncomeRange = userInput - parseInt(range);
   var higherIncomeRange = userInput + parseInt(range);
-  console.log(lowerIncomeRange);
-  console.log(higherIncomeRange);
+  // console.log(lowerIncomeRange);
+  // console.log(higherIncomeRange);
 
     for (var i = 0; i < allMetro.length; i++){
       if (lowerIncomeRange < allMetro[i].income && allMetro[i].income < higherIncomeRange){
