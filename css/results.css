@@ -1,3 +1,21 @@
 body {
 
 }
+/*#mapContainer {
+  max-height: 600px;
+  max-width: 600px;
+}*/
+/*.container {
+  height: 600px;
+  max-width: 1300px;
+  position:relative;;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+/*#barContainer {
+  position: absolute;
+  /*padding-top: 50px;
+  margin-top: 50px;
+}*/

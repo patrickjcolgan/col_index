@@ -1,8 +1,9 @@
 var dupeState;
 var resultsArr = [];
+var resultsIncomeArr = [];
 
 var data = {
-    labels: randomArr;
+    labels: resultsArr, // change to randomArr once we make it,
     datasets: [
         {
             label: "My First dataset",
@@ -68,6 +69,7 @@ matchInput = function(range) {
       console.log('dupestate succssfully processed');
       if (dupeState === true) {
         resultsArr.push(allMetro[i].name);
+        resultsIncomeArr.push(allMetro[i].income);
         console.log(dupeState);
         console.log(resultsArr.length);
       }
@@ -75,18 +77,22 @@ matchInput = function(range) {
   }
 };
 
-var map;
-function initMap() {
-  map = new google.maps.Map(document.getElementById('googleMapResults'), {
-    center: {lat: 47.6062, lng: -122.3321},
-    zoom: 10
-  });
+// var map;
+// function initMap() {
+//   map = new google.maps.Map(document.getElementById('googleMapResults'), {
+//     center: {lat: 47.6062, lng: -122.3321},
+//     zoom: 10
+//   });
+// }
+//Bar Chart - push data into array
+barChartData = function() {
+  data.datasets[0].data[i] = resultsIncomeArr.income;
 }
-
-//Bar Chart
+barChartData();
+//Bar Chart - create
 barChartResults = function(){
-  var ctx = document.getElementById('barContainer').getContext('2d');
-        var barContainer = new Chart(ctx, {
+  var ctx = document.getElementById('barCanvas').getContext('2d');
+        var barCanvas = new Chart(ctx, {
 					type: 'bar',
 					data: data,
 				});
