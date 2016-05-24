@@ -13,6 +13,7 @@ document.getElementById('indexSearch').addEventListener('submit', function(event
 });
 
 var resultsArr = [];
+
 //checks for duplications in resultsArr
 function checkDupArray (array1, array2){
   if (array1.indexOf(array2) === -1 && array1.length < 5){
