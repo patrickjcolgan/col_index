@@ -18,6 +18,35 @@ var elCCR = [
   document.getElementById('polar1')
 ];
 
+barChartData = function() {
+  for (idx in randomArr) {
+    data.datasets[0].data[idx] = randomArr[idx].income;
+  }
+};
+
+//Bar Chart - create
+barChartResults = function(){
+  var ctx = document.getElementById('barCanvas').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+  });
+};
+
+var data = {
+  labels: nameArr,
+  datasets: [
+    {
+      label: 'Median Income for Metro Area',
+      backgroundColor: 'rgba(255,99,132,0.2)',
+      borderColor: 'rgba(255,99,132,1)',
+      borderWidth: 1,
+      hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+      hoverBorderColor: 'rgba(255,99,132,1)',
+      data: [],
+    }
+  ]
+};
 //randomizer
 var rand = [];
 
@@ -68,6 +97,8 @@ document.getElementById('indexSearch').addEventListener('submit', function(event
   }
 
   pushName();
+  barChartData();
+  barChartResults();
   console.log('Script complete');
 });
 
@@ -95,14 +126,14 @@ matchInput = function(range) {
   }
 };
 
-var map;
-
-function initMap() {
-  map = new google.maps.Map(document.getElementById('googleMapResults'), {
-    center: {
-      lat: 47.6062,
-      lng: -122.3321
-    },
-    zoom: 10
-  });
-}
+// var map;
+//
+// function initMap() {
+//   map = new google.maps.Map(document.getElementById('googleMapResults'), {
+//     center: {
+//       lat: 47.6062,
+//       lng: -122.3321
+//     },
+//     zoom: 10
+//   });
+// }
