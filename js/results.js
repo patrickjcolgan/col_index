@@ -6,7 +6,7 @@ var data = {
     labels: resultsArr, // change to randomArr once we make it,
     datasets: [
         {
-            label: "My First dataset",
+            label: "Median Income for Metro Area",
             backgroundColor: "rgba(255,99,132,0.2)",
             borderColor: "rgba(255,99,132,1)",
             borderWidth: 1,
@@ -26,25 +26,32 @@ document.getElementById('indexSearch').addEventListener('submit', function(event
     var locationInput = event.target.location.value;
     // console.log(locationInput);
     matchInput(1000);
+    barChartData();
+    barChartResults();
   } else {
     alert('Please enter at least $40,000');
   }
   if (resultsArr.length < 10) {
-    console.log('2500');
-    console.log(dupeState);
-    matchInput(5000);
-  }
-  if (resultsArr.length < 10) {
     console.log('5000');
     console.log(dupeState);
-    matchInput(10000);
+    matchInput(5000);
+    barChartData();
+    barChartResults();
   }
   if (resultsArr.length < 10) {
     console.log('10000');
     console.log(dupeState);
-    matchInput(20000);
+    matchInput(10000);
+    barChartData();
+    barChartResults();
   }
-  barChartResults();
+  if (resultsArr.length < 10) {
+    console.log('20000');
+    console.log(dupeState);
+    matchInput(20000);
+    barChartData();
+    barChartResults();
+  }
 });
 
 //checks for duplications in resultsArr
@@ -77,18 +84,18 @@ matchInput = function(range) {
   }
 };
 
-// var map;
-// function initMap() {
-//   map = new google.maps.Map(document.getElementById('googleMapResults'), {
-//     center: {lat: 47.6062, lng: -122.3321},
-//     zoom: 10
-//   });
-// }
-//Bar Chart - push data into array
-barChartData = function() {
-  data.datasets[0].data[i] = resultsIncomeArr.income;
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('googleMapResults'), {
+    center: {lat: 47.6062, lng: -122.3321},
+    zoom: 10
+  });
 }
-barChartData();
+barChartData = function() {
+  for (idx in resultsIncomeArr) {
+    data.datasets[0].data[idx] = resultsIncomeArr[idx];
+  }
+};
 //Bar Chart - create
 barChartResults = function(){
   var ctx = document.getElementById('barCanvas').getContext('2d');
