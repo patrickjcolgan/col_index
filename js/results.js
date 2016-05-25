@@ -1,5 +1,49 @@
 var dupeState;
 var resultsArr = [];
+var randomArr = [];
+var nameArr = [];
+var pc = document.getElementById('polarContainer');
+var elCR = [
+  document.getElementById('polar5Canvas'),
+  document.getElementById('polar4Canvas'),
+  document.getElementById('polar3Canvas'),
+  document.getElementById('polar2Canvas'),
+  document.getElementById('polar1Canvas')
+];
+var elCCR = [
+  document.getElementById('polar5'),
+  document.getElementById('polar4'),
+  document.getElementById('polar3'),
+  document.getElementById('polar2'),
+  document.getElementById('polar1')
+];
+
+//randomizer
+var rand = [];
+
+function randomizer() {
+  r = Math.floor(Math.random() * resultsArr.length);
+  if (rand.indexOf(r) === -1) {
+    rand.push(r);
+    randomArr.push(resultsArr[rand.length - 1]);
+    nameArr.push(resultsArr[r].metroArea);
+  }
+  if (resultsArr.length < 5) {
+    var x = 5 - resultsArr.length;
+    for (rem = 0; rem < x; rem++) {
+      theRemover(rem);
+    }
+  };
+}
+
+//remove HTML elements
+function theRemover(counter) {
+  console.log(counter);
+  console.log(elCR[counter]);
+  console.log(elCCR[counter]);
+  elCCR[counter].removeChild(elCR[counter]);
+  pc.removeChild(elCCR[counter]);
+}
 
 //event listener
 document.getElementById('indexSearch').addEventListener('submit', function(event) {
@@ -28,6 +72,7 @@ document.getElementById('indexSearch').addEventListener('submit', function(event
     console.log(dupeState);
     matchInput(20000);
   }
+  randomizer();
 });
 
 //checks for duplications in resultsArr
@@ -60,9 +105,13 @@ matchInput = function(range) {
 };
 
 var map;
+
 function initMap() {
   map = new google.maps.Map(document.getElementById('googleMapResults'), {
-    center: {lat: 47.6062, lng: -122.3321},
+    center: {
+      lat: 47.6062,
+      lng: -122.3321
+    },
     zoom: 10
   });
 }
