@@ -196,34 +196,40 @@ var neighbors = [
 var markers = [];
 var map;
 
-
 function initMap() {
   map = new google.maps.Map(document.getElementById('googlemapsbackground'), {
-    zoom: 4,
-    center: {lat: 39.8282, lng: -98.5795}
+    zoom: 2,
+    center: {lat: 39.8282, lng: -98.5795},
+    mapTypeId: google.maps.MapTypeId.SATELLITE
   });
 }
 
 window.onload = function drop() {
   clearMarkers();
-  for (var i = 0; i < neighbors.length; i++) {
-    addMarkerWithTimeout(neighbors[i], i * 1000);
+  for (var j = 0; j < neighbors.length; j++) {
+    addMarkerWithTimeout(neighbors[j], j * 8000);
   }
 }
 
 function addMarkerWithTimeout(position, timeout) {
   window.setTimeout(function() {
-    markers.push(new google.maps.Marker({
-      position: position,
-      map: map,
-      animation: google.maps.Animation.DROP
-    }));
+    var bounds = new google.maps.LatLngBounds(),
+        marker = new google.maps.Marker({
+          position: position,
+          map: map,
+          animation: google.maps.Animation.DROP,
+        });
+
+    bounds.extend(marker.getPosition());
+    markers.push(marker);
+    map.fitBounds(bounds);
+    map.setZoom(15);
   }, timeout);
 }
 
 function clearMarkers() {
-  for (var i = 0; i < markers.length; i++) {
-    markers[i].setMap(null);
+  for (var j = 0; j < markers.length; j++) {
+    markers[j].setMap(null);
   }
   markers = [];
 }
