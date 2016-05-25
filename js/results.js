@@ -1,42 +1,81 @@
 var dupeState;
 var resultsArr = [];
+var randomArr = [];
+var nameArr = [];
+var pc = document.getElementById('polarContainer');
+var elCR = [
+  document.getElementById('polar5Canvas'),
+  document.getElementById('polar4Canvas'),
+  document.getElementById('polar3Canvas'),
+  document.getElementById('polar2Canvas'),
+  document.getElementById('polar1Canvas')
+];
+var elCCR = [
+  document.getElementById('polar5'),
+  document.getElementById('polar4'),
+  document.getElementById('polar3'),
+  document.getElementById('polar2'),
+  document.getElementById('polar1')
+];
+
+//randomizer
+var rand = [];
+
+function randomizer() {
+  r = Math.floor(Math.random() * resultsArr.length);
+  if (rand.indexOf(r) === -1) {
+    rand.push(r);
+    randomArr.push(resultsArr[rand.length - 1]);
+  }
+}
+
+function pushName() {
+  for (var p = 0; p < randomArr.length; p++)
+    nameArr.push(randomArr[p].metroArea);
+}
 
 //event listener
 document.getElementById('indexSearch').addEventListener('submit', function(event) {
   event.preventDefault();
   userInput = event.target.income.value;
   if (userInput >= 40000) {
-    // console.log(userInput);
     var locationInput = event.target.location.value;
-    // console.log(locationInput);
     matchInput(1000);
   } else {
     alert('Please enter at least $40,000');
   }
-  if (resultsArr.length < 10) {
-    console.log('2500');
-    console.log(dupeState);
+  if (resultsArr.length < 5) {
     matchInput(5000);
   }
-  if (resultsArr.length < 10) {
-    console.log('5000');
-    console.log(dupeState);
+  if (resultsArr.length < 5) {
     matchInput(10000);
   }
-  if (resultsArr.length < 10) {
-    console.log('10000');
-    console.log(dupeState);
+  if (resultsArr.length < 5) {
     matchInput(20000);
   }
+  for (ran = 0; ran < 5; ran++) {
+    if (resultsArr.length > 5) {
+      console.log('randomizer called');
+      randomizer();
+    }
+  }
+  if (resultsArr.length < 5) {
+    console.log('into the less than 5');
+    for (rem2 = 0; rem2 < resultsArr.length; rem2++) {
+      randomArr.push(resultsArr[rem2]);
+      console.log('name has been pushed');
+    }
+  }
+
+  pushName();
+  console.log('Script complete');
 });
 
 //checks for duplications in resultsArr
 function checkDupArray(array1, array2) {
   if (array1.indexOf(array2) === -1) {
-    console.log('new array is ' + array1);
     dupeState = true;
   } else if (array1.indexOf(array2) > -1) {
-    console.log(array2 + 'already exists in the array');
     dupeState = false;
   }
 };
@@ -48,21 +87,22 @@ matchInput = function(range) {
   var higherIncomeRange = userInput + parseInt(range);
   for (var i = 0; i < allMetro.length; i++) {
     if (lowerIncomeRange < allMetro[i].income && allMetro[i].income < higherIncomeRange) {
-      checkDupArray(resultsArr, allMetro[i].name);
-      console.log('dupestate succssfully processed');
+      checkDupArray(resultsArr, allMetro[i]);
       if (dupeState === true) {
-        resultsArr.push(allMetro[i].name);
-        console.log(dupeState);
-        console.log(resultsArr.length);
+        resultsArr.push(allMetro[i]);
       }
     }
   }
 };
 
 var map;
+
 function initMap() {
   map = new google.maps.Map(document.getElementById('googleMapResults'), {
-    center: {lat: 47.6062, lng: -122.3321},
+    center: {
+      lat: 47.6062,
+      lng: -122.3321
+    },
     zoom: 10
   });
 }
