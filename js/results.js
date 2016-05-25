@@ -75,12 +75,15 @@ document.getElementById('indexSearch').addEventListener('submit', function(event
   }
   if (resultsArr.length < 5) {
     matchInput(5000);
+    console.log('5k');
   }
   if (resultsArr.length < 5) {
     matchInput(10000);
+    console.log('10k');
   }
   if (resultsArr.length < 5) {
     matchInput(20000);
+    console.log('15k');
   }
   for (ran = 0; ran < 5; ran++) {
     if (resultsArr.length > 5) {
