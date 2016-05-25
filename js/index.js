@@ -192,7 +192,6 @@ var neighbors = [
 {lat: 32.692651, lng: -114.627692}
 ];
 
-
 var markers = [];
 var map;
 
@@ -209,16 +208,23 @@ window.onload = function drop() {
   for (var j = 0; j < neighbors.length; j++) {
     addMarkerWithTimeout(neighbors[j], j * 8000);
   }
-}
+};
 
 function addMarkerWithTimeout(position, timeout) {
   window.setTimeout(function() {
+    var contentString = 'Test';
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
     var bounds = new google.maps.LatLngBounds(),
-        marker = new google.maps.Marker({
-          position: position,
-          map: map,
-          animation: google.maps.Animation.DROP,
-        });
+      marker = new google.maps.Marker({
+        position: position,
+        map: map,
+        animation: google.maps.Animation.DROP,
+      });
+    marker.addListener('click', function(){
+      infowindow.open(map, marker);
+    });
 
     bounds.extend(marker.getPosition());
     markers.push(marker);
