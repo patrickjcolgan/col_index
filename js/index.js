@@ -194,25 +194,27 @@ var neighbors = [
 
 var markers = [];
 var map;
-
+var name2arr = [];
+for (var c = 0; c < allMetro.length; c++) {
+  name2arr.push(allMetro[c].metroArea);
+}
 function initMap() {
   map = new google.maps.Map(document.getElementById('googlemapsbackground'), {
     zoom: 2,
     center: {lat: 39.8282, lng: -98.5795},
-    mapTypeId: google.maps.MapTypeId.SATELLITE
+    mapTypeId: google.maps.MapTypeId.HYBRID
   });
 }
-
 window.onload = function drop() {
   clearMarkers();
-  for (var j = 0; j < neighbors.length; j++) {
+  for (j = 0; j < neighbors.length; j++) {
     addMarkerWithTimeout(neighbors[j], j * 8000);
   }
 };
 
 function addMarkerWithTimeout(position, timeout) {
   window.setTimeout(function() {
-    var contentString = 'Test';
+    var contentString = name2arr[c];
     var infowindow = new google.maps.InfoWindow({
       content: contentString
     });
@@ -222,14 +224,14 @@ function addMarkerWithTimeout(position, timeout) {
         map: map,
         animation: google.maps.Animation.DROP,
       });
-    marker.addListener('click', function(){
+    marker.addListener('mouseover', function(){
       infowindow.open(map, marker);
     });
 
     bounds.extend(marker.getPosition());
     markers.push(marker);
     map.fitBounds(bounds);
-    map.setZoom(15);
+    map.setZoom(13);
   }, timeout);
 }
 
