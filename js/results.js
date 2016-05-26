@@ -112,23 +112,22 @@ function pushName() {
 document.getElementById('indexSearch').addEventListener('submit', function(event) {
   event.preventDefault();
   userInput = event.target.income.value;
-  if (userInput >= 40000) {
-    var locationInput = event.target.location.value;
+  var locationInput = event.target.location.value;
+  if (userInput < 35000) {
+    alert('Please enter at least 40k, but click ok to see if there\'s data available.');
     matchInput(1000);
+  } else if (userInput >= 120000) {
+    alert('Live wherever you like. But choose something more modest if you\'d like some data');
   } else {
-    alert('Please enter at least $40,000');
+    matchInput(1000);
   }
   if (resultsArr.length < 5) {
     matchInput(5000);
     console.log('5k');
-  }
-  if (resultsArr.length < 5) {
-    matchInput(10000);
-    console.log('10k');
-  }
-  if (resultsArr.length < 5) {
-    matchInput(20000);
+    matchInput(15000);
     console.log('15k');
+    matchInput(25000);
+    console.log('25k');
   }
   for (ran = 0; ran < 5; ran++) {
     if (resultsArr.length > 5) {
@@ -179,14 +178,3 @@ matchInput = function(range) {
     }
   }
 };
-
-// function Polar (income, grocery, housing, utilities, transportation, healthcare, miscellaneous){
-//   this.income = resultsArr[i].income;
-//   this.grocery = resultsArr[i].grocery;
-//   this.housing = resultsArr[i].housing;
-//   this.utilities = resultsArr[i].utilities;
-//   this.transportation = resultsArr[i].transportation;
-//   this.healthcare = resultsArr[i].healthcare;
-//   this.miscellaneous = resultsArr[i].miscellaneous;
-//   polarArr.push(this);
-// };
