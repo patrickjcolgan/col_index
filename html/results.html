@@ -5,9 +5,8 @@
     <title>COL Index Project Results</title>
     <link rel="stylesheet" href="../css/master.css">
     <link rel="stylesheet" href="../css/results.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBJuPhU4z3lu9ZZnxgY88K-A_tAKx8Exkg&callback=initMap"
-    async defer></script>
+    <!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBJuPhU4z3lu9ZZnxgY88K-A_tAKx8Exkg&callback=initMap" -->
+    <!-- async defer></script> -->
     <script type="text/javascript" src"https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.js"></script>
     <script type="text/javascript" src="../js/app.js"></script>
   </head>
@@ -25,21 +24,21 @@
         <form action="" id='indexSearch'>
           <fieldset>
             <legend>Code Fellows Campus Locations:</legend>
-            <select class="" name="state" id="location" required>
-              <option value="NewYorkManhattanNY">New York, New York</option>
-              <option value="PortlandOR">Portland, Oregon</option>
-              <option value="SeattleWA">Seattle, Washington</option>
-            </select>
+            <section id="dropdown">
+              <select class="" name="state" id="location" required>
+                <option value="NewYorkManhattanNY">New York, New York</option>
+                <option value="PortlandOR">Portland, Oregon</option>
+                <option value="SeattleWA">Seattle, Washington</option>
+              </select>
+            </section>
             <label for='income'></label>
             <input type="number" name="income" placeholder="Income" id='income' required>
             <input type="submit" name="Submit" value="Submit" id='sub'>
           </fieldset>
         </form>
       </section>
-      <section class="container">
-        <section id="mapContainer">
-          <div id="googleMapResults"></div>
-        </section>
+      <section id="mapContainer">
+        <div id="googlemapsbackground"></div>
       </section>
       <section id="barContainer">
         <canvas id="barCanvas"></canvas>
@@ -66,6 +65,6 @@
       <p>Copyright info</p>
       <p>Data sources</p>
     </footer>
-    <script type="text/javascript" src="../js/results.js"></script>
+    <!-- <script type="text/javascript" src="../js/results.js"></script> -->
   </body>
 </html>
