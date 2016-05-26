@@ -2,6 +2,19 @@ var dupeState;
 var resultsArr = [];
 var randomArr = [];
 var nameArr = [];
+var polarArr = [];
+
+function Polar (resultsArr){
+  this.income = resultsArr[i].income;
+  this.grocery = resultsArr[i].grocery;
+  this.housing = resultsArr[i].housing;
+  this.utilities = resultsArr[i].utilities;
+  this.transportation = resultsArr[i].transportation;
+  this.healthcare = resultsArr[i].healthcare;
+  this.miscellaneous = resultsArr[i].miscellaneous;
+  polarArr.push(this);
+};
+
 var pc = document.getElementById('polarContainer');
 var elCR = [
   document.getElementById('polar5Canvas'),
@@ -18,55 +31,60 @@ var elCCR = [
   document.getElementById('polar1')
 ];
 
-// barChartData = function() {
-//   for (idx in randomArr) {
-//     data.datasets[0].data[idx] = randomArr[idx].income;
-//   }
-// };
-//
-// //Bar Chart - create
-// barChartResults = function(){
-//   var ctx = document.getElementById('barCanvas').getContext('2d');
-//   var barCanvas = new Chart(ctx, {
-//     type: 'bar',
-//     data: data,
-//   });
-// };
-// //Bar Chart Data
-// var data = {
-//   labels: nameArr,
-//   datasets: [
-//     {
-//       label: 'Median Income for Metro Area',
-//       backgroundColor: 'rgba(255,99,132,0.2)',
-//       borderColor: 'rgba(255,99,132,1)',
-//       borderWidth: 1,
-//       hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-//       hoverBorderColor: 'rgba(255,99,132,1)',
-//       data: [],
-//     }
-//   ]
-// };
-//Polar Chart - pull data
-polarChartData = function() {
+barChartData = function() {
   for (idx in randomArr) {
-    polarData.datasets[0].data[idx] = randomArr[idx].income;
+    data.datasets[0].data[idx] = randomArr[idx];
   }
 };
+
+//Bar Chart - create
+barChartResults = function(){
+  var ctx = document.getElementById('barCanvas').getContext('2d');
+  var barCanvas = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+  });
+};
+// //Bar Chart Data
+var data = {
+  labels: nameArr,
+  datasets: [
+    {
+      label: 'Median Income for Metro Area',
+      backgroundColor: 'rgba(255,99,132,0.2)',
+      borderColor: 'rgba(255,99,132,1)',
+      borderWidth: 1,
+      hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+      hoverBorderColor: 'rgba(255,99,132,1)',
+      data: [],
+    }
+  ]
+};
+var obj = new Array();
+polarChartData = function () {
+  for (var i = 0; i < resultsArr; i++){
+    obj[i] = new Polar(resultsArr[i])
+  }
+};
+//Polar Chart - pull data
+// polarChartData = function() {
+//   for (bananas in polarArr) {
+//     polarData.datasets[0].data[bananas] = new Polar;
+//   }
+// };
 //Polar Chart - create
 polarChartResults = function(){
-  var ctx = document.getElementById('polar1').getContext('2d');
+  var ctx = document.getElementById('polar1Canvas').getContext('2d');
   new Chart(ctx, {
     data: data,
     type: 'polarArea',
-    options: options
   });
 };
 
 //Polar Chart data
 var polarData = {
   datasets: [{
-    data: [],
+    data: [1,2,3,4],
     backgroundColor: [
       '#FF6384',
       '#4BC0C0',
@@ -169,14 +187,13 @@ matchInput = function(range) {
   }
 };
 
-// var map;
-//
-// function initMap() {
-//   map = new google.maps.Map(document.getElementById('googleMapResults'), {
-//     center: {
-//       lat: 47.6062,
-//       lng: -122.3321
-//     },
-//     zoom: 10
-//   });
-// }
+// function Polar (income, grocery, housing, utilities, transportation, healthcare, miscellaneous){
+//   this.income = resultsArr[i].income;
+//   this.grocery = resultsArr[i].grocery;
+//   this.housing = resultsArr[i].housing;
+//   this.utilities = resultsArr[i].utilities;
+//   this.transportation = resultsArr[i].transportation;
+//   this.healthcare = resultsArr[i].healthcare;
+//   this.miscellaneous = resultsArr[i].miscellaneous;
+//   polarArr.push(this);
+// };

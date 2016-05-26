@@ -2,7 +2,7 @@
 var allMetro = [];
 
 //Object Constructor function to store Metro data
-function Metro(name, metroArea, state, colIndex, income, longitude, latitude, grocery, housing, utilities, transportation, healthcare, miscellaneous) { //do we need parameters??
+function Metro(name, metroArea, state, colIndex, income, grocery, housing, utilities, transportation, healthcare, miscellaneous, latitude, longitude) { //do we need parameters??
   this.name = name;
   this.metroArea = metroArea;
   this.state = state;
@@ -18,12 +18,6 @@ function Metro(name, metroArea, state, colIndex, income, longitude, latitude, gr
   this.latitude = latitude;
   allMetro.push(this);
 };
-
-//Google Maps
-// var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-
-//new instances
-//new cityName = new City ()
 
 //new MetroName = new Metro ()
 var AkronOH = new Metro("AkronOH", "Akron", "OH", 100.2, 50100, 6831.5, 14456.5, 5395, 6426, 1736, 15360, 41.081445, -81.519005);
