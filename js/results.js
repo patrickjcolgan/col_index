@@ -4,16 +4,16 @@ var randomArr = [];
 var nameArr = [];
 var polarArr = [];
 
-function Polar (resultsArr){
-  this.income = resultsArr[i].income;
-  this.grocery = resultsArr[i].grocery;
-  this.housing = resultsArr[i].housing;
-  this.utilities = resultsArr[i].utilities;
-  this.transportation = resultsArr[i].transportation;
-  this.healthcare = resultsArr[i].healthcare;
-  this.miscellaneous = resultsArr[i].miscellaneous;
-  polarArr.push(this);
-};
+// function Polar (resultsArr){
+//   this.income = resultsArr[i].income;
+//   this.grocery = resultsArr[i].grocery;
+//   this.housing = resultsArr[i].housing;
+//   this.utilities = resultsArr[i].utilities;
+//   this.transportation = resultsArr[i].transportation;
+//   this.healthcare = resultsArr[i].healthcare;
+//   this.miscellaneous = resultsArr[i].miscellaneous;
+//   polarArr.push(this);
+// };
 
 var pc = document.getElementById('polarContainer');
 var elCR = [
@@ -33,7 +33,7 @@ var elCCR = [
 
 barChartData = function() {
   for (idx in randomArr) {
-    data.datasets[0].data[idx] = randomArr[idx];
+    data.datasets[0].data[idx] = randomArr[idx].income;
   }
 };
 
@@ -60,47 +60,36 @@ var data = {
     }
   ]
 };
-var obj = new Array();
-polarChartData = function () {
-  for (var i = 0; i < resultsArr; i++){
-    obj[i] = new Polar(resultsArr[i])
-  }
-};
+
 //Polar Chart - pull data
-// polarChartData = function() {
-//   for (bananas in polarArr) {
-//     polarData.datasets[0].data[bananas] = new Polar;
-//   }
-// };
+polarChartData = function(randomArrObj) {
+  var polarData = {
+    datasets: [{
+      data: [],
+      backgroundColor: [
+        '#FF6384',
+        '#4BC0C0',
+        '#FFCE56',
+        '#E7E9ED',
+        '#36A2EB'
+      ],
+      label: 'My dataset' // for legend
+    }],
+    labels: Object.keys(randomArrObj),
+  };
+  for (var i = 0; i < polarData.labels.length; i++) {
+    polarData.datasets[0].data[i] = randomArrObj[polarData.labels[i]];
+  }
+  return polarData;
+};
 //Polar Chart - create
-polarChartResults = function(){
-  var ctx = document.getElementById('polar1Canvas').getContext('2d');
+polarChartResults = function(id, obj) {
+  console.log(id);
+  var ctx = document.getElementById(id).getContext('2d');
   new Chart(ctx, {
-    data: data,
+    data: polarChartData(obj),//call&return chart data for each Obj
     type: 'polarArea',
   });
-};
-
-//Polar Chart data
-var polarData = {
-  datasets: [{
-    data: [1,2,3,4],
-    backgroundColor: [
-      '#FF6384',
-      '#4BC0C0',
-      '#FFCE56',
-      '#E7E9ED',
-      '#36A2EB'
-    ],
-    label: 'My dataset' // for legend
-  }],
-  labels: [
-    'Red',
-    'Green',
-    'Yellow',
-    'Grey',
-    'Blue'
-  ]
 };
 
 //randomizer
@@ -158,8 +147,12 @@ document.getElementById('indexSearch').addEventListener('submit', function(event
   pushName();
   barChartData();
   barChartResults();
-  polarChartData();
-  polarChartResults();
+  // polarChartData();
+  //Scott: for loop iterate over arrays & call polarChartData with arguments
+  for (idx in randomArr) {
+    polarChartResults(elCR[idx].id, randomArr[idx]);
+    console.log(elCR[idx], randomArr[idx]);
+  }
   console.log('Script complete');
 });
 
