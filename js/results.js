@@ -43,11 +43,11 @@ var data = {
   labels: nameArr,
   datasets: [{
     label: 'Median Income for Metro Area',
-    backgroundColor: 'rgba(255,99,132,0.2)',
-    borderColor: 'rgba(255,99,132,1)',
+    backgroundColor: 'rgba(128, 128, 128, 0.5)',
+    borderColor: 'rgba(128, 128, 128, 1)',
     borderWidth: 1,
-    hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-    hoverBorderColor: 'rgba(255,99,132,1)',
+    hoverBackgroundColor: 'rgba(128, 128, 128, 0.4)',
+    hoverBorderColor: 'rgba(128, 128, 128, 1)',
     data: [],
   }]
 };
