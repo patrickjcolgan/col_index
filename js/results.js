@@ -3,6 +3,7 @@ var resultsArr = [];
 var randomArr = [];
 var nameArr = [];
 var polarArr = [];
+var latlngArr = [];
 
 // function Polar (resultsArr){
 //   this.income = resultsArr[i].income;
@@ -99,6 +100,14 @@ polarChartResults = function(id, obj) {
 //randomizer
 var rand = [];
 
+function ltlg(latarray) {
+  for (var x = 0; x < randomArr.length; x++) {
+    latlngArr.push(Object.keys(latarray[x]).splice(11));
+    console.log(latlngArr);
+  }
+  // ltlg.push(latlngArr);
+};
+
 function randomizer() {
   r = Math.floor(Math.random() * resultsArr.length);
   if (rand.indexOf(r) === -1) {
@@ -152,6 +161,8 @@ document.getElementById('indexSearch').addEventListener('submit', function(event
   pushName();
   barChartData();
   barChartResults();
+  ltlg(randomArr);
+  addMarkerWithTimeout();
   // polarChartData();
   //Scott: for loop iterate over arrays & call polarChartData with arguments
   for (idx in randomArr) {
@@ -198,18 +209,18 @@ function initMap() {
     mapTypeId: google.maps.MapTypeId.HYBRID
   });
 }
-window.onload = function drop() {
+function drop() {
   clearMarkers();
-  for (j = 0; j < resultsArr.length; j++) {
-    addMarkerWithTimeout(resultsArr[j], j * 8000);
+  for (j = 0; j < latlngArr.length; j++) {
+    addMarkerWithTimeout(latlngArr[j], j * 0);
   }
 };
 
 function addMarkerWithTimeout(position, timeout) {
   window.setTimeout(function() {
-    var contentString = name2arr[c];
+    // var contentString = name2arr[c];
     var infowindow = new google.maps.InfoWindow({
-      content: contentString
+      // content: contentString
     });
     var bounds = new google.maps.LatLngBounds(),
       marker = new google.maps.Marker({
