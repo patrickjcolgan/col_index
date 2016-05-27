@@ -43,6 +43,10 @@ barChartResults = function(){
   var barCanvas = new Chart(ctx, {
     type: 'bar',
     data: data,
+    scaleOverride : true,
+    scaleSteps : 10,
+    scaleStepWidth : 50,
+    scaleStartValue : 0
   });
 };
 // //Bar Chart Data

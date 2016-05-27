@@ -192,38 +192,52 @@ var neighbors = [
 {lat: 32.692651, lng: -114.627692}
 ];
 
-
 var markers = [];
 var map;
-
-
+var name2arr = [];
+for (var c = 0; c < allMetro.length; c++) {
+  name2arr.push(allMetro[c].metroArea);
+}
 function initMap() {
   map = new google.maps.Map(document.getElementById('googlemapsbackground'), {
-    zoom: 4,
-    center: {lat: 39.8282, lng: -98.5795}
+    zoom: 2,
+    center: {lat: 39.8282, lng: -98.5795},
+    mapTypeId: google.maps.MapTypeId.HYBRID
   });
 }
-
 window.onload = function drop() {
   clearMarkers();
-  for (var i = 0; i < neighbors.length; i++) {
-    addMarkerWithTimeout(neighbors[i], i * 1000);
+  for (j = 0; j < neighbors.length; j++) {
+    addMarkerWithTimeout(neighbors[j], j * 8000);
   }
-}
+};
 
 function addMarkerWithTimeout(position, timeout) {
   window.setTimeout(function() {
-    markers.push(new google.maps.Marker({
-      position: position,
-      map: map,
-      animation: google.maps.Animation.DROP
-    }));
+    var contentString = name2arr[c];
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+    var bounds = new google.maps.LatLngBounds(),
+      marker = new google.maps.Marker({
+        position: position,
+        map: map,
+        animation: google.maps.Animation.DROP,
+      });
+    marker.addListener('mouseover', function(){
+      infowindow.open(map, marker);
+    });
+
+    bounds.extend(marker.getPosition());
+    markers.push(marker);
+    map.fitBounds(bounds);
+    map.setZoom(13);
   }, timeout);
 }
 
 function clearMarkers() {
-  for (var i = 0; i < markers.length; i++) {
-    markers[i].setMap(null);
+  for (var j = 0; j < markers.length; j++) {
+    markers[j].setMap(null);
   }
   markers = [];
 }
