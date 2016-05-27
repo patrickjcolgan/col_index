@@ -2,6 +2,19 @@ var dupeState;
 var resultsArr = [];
 var randomArr = [];
 var nameArr = [];
+var polarArr = [];
+
+// function Polar (resultsArr){
+//   this.income = resultsArr[i].income;
+//   this.grocery = resultsArr[i].grocery;
+//   this.housing = resultsArr[i].housing;
+//   this.utilities = resultsArr[i].utilities;
+//   this.transportation = resultsArr[i].transportation;
+//   this.healthcare = resultsArr[i].healthcare;
+//   this.miscellaneous = resultsArr[i].miscellaneous;
+//   polarArr.push(this);
+// };
+
 var pc = document.getElementById('polarContainer');
 var elCR = [
   document.getElementById('polar5Canvas'),
@@ -17,6 +30,71 @@ var elCCR = [
   document.getElementById('polar2'),
   document.getElementById('polar1')
 ];
+
+barChartData = function() {
+  for (idx in randomArr) {
+    data.datasets[0].data[idx] = randomArr[idx].income;
+  }
+};
+
+//Bar Chart - create
+barChartResults = function(){
+  var ctx = document.getElementById('barCanvas').getContext('2d');
+  var barCanvas = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    scaleOverride : true,
+    scaleSteps : 10,
+    scaleStepWidth : 50,
+    scaleStartValue : 0
+  });
+};
+// //Bar Chart Data
+var data = {
+  labels: nameArr,
+  datasets: [
+    {
+      label: 'Median Income for Metro Area',
+      backgroundColor: 'rgba(255,99,132,0.2)',
+      borderColor: 'rgba(255,99,132,1)',
+      borderWidth: 1,
+      hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+      hoverBorderColor: 'rgba(255,99,132,1)',
+      data: [],
+    }
+  ]
+};
+
+//Polar Chart - pull data
+polarChartData = function(randomArrObj) {
+  var polarData = {
+    datasets: [{
+      data: [],
+      backgroundColor: [
+        '#FF6384',
+        '#4BC0C0',
+        '#FFCE56',
+        '#E7E9ED',
+        '#36A2EB'
+      ],
+      label: 'My dataset' // for legend
+    }],
+    labels: Object.keys(randomArrObj),
+  };
+  for (var i = 0; i < polarData.labels.length; i++) {
+    polarData.datasets[0].data[i] = randomArrObj[polarData.labels[i]];
+  }
+  return polarData;
+};
+//Polar Chart - create
+polarChartResults = function(id, obj) {
+  console.log(id);
+  var ctx = document.getElementById(id).getContext('2d');
+  new Chart(ctx, {
+    data: polarChartData(obj),//call&return chart data for each Obj
+    type: 'polarArea',
+  });
+};
 
 //randomizer
 var rand = [];
@@ -39,20 +117,22 @@ function pushName() {
 document.getElementById('indexSearch').addEventListener('submit', function(event) {
   event.preventDefault();
   userInput = event.target.income.value;
-  if (userInput >= 40000) {
-    var locationInput = event.target.location.value;
+  var locationInput = event.target.location.value;
+  if (userInput < 35000) {
+    alert('Please enter at least 40k, but click ok to see if there\'s data available.');
     matchInput(1000);
+  } else if (userInput >= 120000) {
+    alert('Live wherever you like. But choose something more modest if you\'d like some data');
   } else {
-    alert('Please enter at least $40,000');
+    matchInput(1000);
   }
   if (resultsArr.length < 5) {
     matchInput(5000);
-  }
-  if (resultsArr.length < 5) {
-    matchInput(10000);
-  }
-  if (resultsArr.length < 5) {
-    matchInput(20000);
+    console.log('5k');
+    matchInput(15000);
+    console.log('15k');
+    matchInput(25000);
+    console.log('25k');
   }
   for (ran = 0; ran < 5; ran++) {
     if (resultsArr.length > 5) {
@@ -69,6 +149,14 @@ document.getElementById('indexSearch').addEventListener('submit', function(event
   }
 
   pushName();
+  barChartData();
+  barChartResults();
+  // polarChartData();
+  //Scott: for loop iterate over arrays & call polarChartData with arguments
+  for (idx in randomArr) {
+    polarChartResults(elCR[idx].id, randomArr[idx]);
+    console.log(elCR[idx], randomArr[idx]);
+  }
   console.log('Script complete');
 });
 
