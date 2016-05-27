@@ -200,7 +200,7 @@ function initMap() {
 function drop() {
   // clearMarkers();
   for (j = 0; j < resultsArr.length; j++) {
-    addMarkerWithTimeout((resultsArr[0].latitude), (resultsArr[0].longitude), j * 500);
+    addMarkerWithTimeout((resultsArr.latitude), (resultsArr.longitude), j * 500);
   }
 };
 
