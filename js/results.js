@@ -4,17 +4,6 @@ var randomArr = [];
 var nameArr = [];
 var polarArr = [];
 
-// function Polar (resultsArr){
-//   this.income = resultsArr[i].income;
-//   this.grocery = resultsArr[i].grocery;
-//   this.housing = resultsArr[i].housing;
-//   this.utilities = resultsArr[i].utilities;
-//   this.transportation = resultsArr[i].transportation;
-//   this.healthcare = resultsArr[i].healthcare;
-//   this.miscellaneous = resultsArr[i].miscellaneous;
-//   polarArr.push(this);
-// };
-
 var pc = document.getElementById('polarContainer');
 var elCR = [
   document.getElementById('polar5Canvas'),
@@ -38,35 +27,36 @@ barChartData = function() {
 };
 
 //Bar Chart - create
-barChartResults = function(){
+barChartResults = function() {
   var ctx = document.getElementById('barCanvas').getContext('2d');
   var barCanvas = new Chart(ctx, {
     type: 'bar',
     data: data,
-    scaleOverride : true,
-    scaleSteps : 10,
-    scaleStepWidth : 50,
-    scaleStartValue : 0
+    scaleOverride: true,
+    scaleSteps: 10,
+    scaleStepWidth: 50,
+    scaleStartValue: 0
   });
 };
 // //Bar Chart Data
 var data = {
   labels: nameArr,
-  datasets: [
-    {
-      label: 'Median Income for Metro Area',
-      backgroundColor: 'rgba(255,99,132,0.2)',
-      borderColor: 'rgba(255,99,132,1)',
-      borderWidth: 1,
-      hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-      hoverBorderColor: 'rgba(255,99,132,1)',
-      data: [],
-    }
-  ]
+  datasets: [{
+    label: 'Median Income for Metro Area',
+    backgroundColor: 'rgba(255,99,132,0.2)',
+    borderColor: 'rgba(255,99,132,1)',
+    borderWidth: 1,
+    hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+    hoverBorderColor: 'rgba(255,99,132,1)',
+    data: [],
+  }]
 };
 
 //Polar Chart - pull data
 polarChartData = function(randomArrObj) {
+  var anotherArray = Object.keys(randomArrObj).splice(5);
+  console.log(anotherArray);
+  anotherArray.splice(6, 2);
   var polarData = {
     datasets: [{
       data: [],
@@ -79,7 +69,7 @@ polarChartData = function(randomArrObj) {
       ],
       label: 'My dataset' // for legend
     }],
-    labels: Object.keys(randomArrObj),
+    labels: anotherArray
   };
   for (var i = 0; i < polarData.labels.length; i++) {
     polarData.datasets[0].data[i] = randomArrObj[polarData.labels[i]];
@@ -91,7 +81,7 @@ polarChartResults = function(id, obj) {
   console.log(id);
   var ctx = document.getElementById(id).getContext('2d');
   new Chart(ctx, {
-    data: polarChartData(obj),//call&return chart data for each Obj
+    data: polarChartData(obj), //call&return chart data for each Obj
     type: 'polarArea',
   });
 };
