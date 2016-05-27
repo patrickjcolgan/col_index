@@ -27,6 +27,7 @@ function randomizer() {
     rand.push(r);
     randomArr.push(resultsArr[rand.length - 1]);
   }
+  addMarkerWithTimeout(resultsArr);
 }
 
 function pushName() {
@@ -95,14 +96,55 @@ matchInput = function(range) {
   }
 };
 
+var markers = [];
 var map;
-
+var name2arr = [];
+for (var c = 0; c < allMetro.length; c++) {
+  name2arr.push(allMetro[c].metroArea);
+}
 function initMap() {
-  map = new google.maps.Map(document.getElementById('googleMapResults'), {
-    center: {
-      lat: 47.6062,
-      lng: -122.3321
-    },
-    zoom: 10
+  map = new google.maps.Map(document.getElementById('googlemapsbackground'), {
+    zoom: 4,
+    center: {lat: 39.8282, lng: -98.5795},
+    mapTypeId: google.maps.MapTypeId.HYBRID
   });
+}
+function drop() {
+  // clearMarkers();
+  for (j = 0; j < resultsArr.length; j++) {
+    addMarkerWithTimeout((resultsArr[0].latitude), (resultsArr[0].longitude), j * 500);
+  }
+};
+
+function addMarkerWithTimeout(position, timeout) {
+  window.setTimeout(function() {
+    // function drop() {
+    //   clearMarkers();
+    //   for (j = 0; j < resultsArr; j++) {
+    //     addMarkerWithTimeout(resultsArr[j].metroArea, resultsArr[j].income, j * 8000);
+    //     console.log(resultsArr);
+      // }
+    // };
+    // var contentString = name2arr;
+    var infowindow = new google.maps.InfoWindow({
+      // content: contentString
+    });
+    var marker = new google.maps.Marker({
+      position: position,
+      // map: map,
+      animation: google.maps.Animation.DROP,
+    });
+    // marker.setMap(resultsArr[j].latitude, resultsArr[j].longitude);
+    google.maps.event.addListener(marker, 'mouseover', function() {
+      // for ()
+      infowindow.setContent('<div><strong>' + 'City Name: ' + resultsArr[j].metroArea + '</strong><br>' + 'Suggested Income: ' + resultsArr[j].income + '<br>' + '</div>');
+      infowindow.open(map, this);
+    });
+  }, timeout);
+}
+function clearMarkers() {
+  for (var j = 0; j < markers.length; j++) {
+    markers[j].setMap(null);
+  }
+  markers = [];
 }

@@ -1,18 +1,3 @@
-// var map;
-// function initMap() {
-//   map = new google.maps.Map(document.getElementById('googlemapsbackground'), {
-//     center: {lat: 47.6062, lng: -122.3321},
-//     zoom: 10
-//
-//     function addMarker(location) {
-//        marker = new google.maps.Marker({
-//            position: location,
-//            map: map
-//        });
-//    }
-//   });
-// }
-
 var neighbors = [
 {lat: 41.081445, lng: -81.519005},
 {lat: 42.652579, lng: -73.756232},
@@ -194,10 +179,7 @@ var neighbors = [
 
 var markers = [];
 var map;
-var name2arr = [];
-for (var c = 0; c < allMetro.length; c++) {
-  name2arr.push(allMetro[c].metroArea);
-}
+
 function initMap() {
   map = new google.maps.Map(document.getElementById('googlemapsbackground'), {
     zoom: 2,
@@ -214,10 +196,10 @@ window.onload = function drop() {
 
 function addMarkerWithTimeout(position, timeout) {
   window.setTimeout(function() {
-    var contentString = name2arr[c];
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString
-    });
+    // // var contentString = name2arr[c];
+    // var infowindow = new google.maps.InfoWindow({
+    //   content: contentString
+    // });
     var bounds = new google.maps.LatLngBounds(),
       marker = new google.maps.Marker({
         position: position,

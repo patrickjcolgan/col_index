@@ -7,6 +7,11 @@
   z-index: 0;
 }
 
+#searchContainer {
+  position:relative;
+  z-index:1;
+}
+
 main > section {
   display: block;
   width: 100%;
