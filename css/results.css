@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-body {
-  width: 60em;
-}
-.container {
-  width: 600px;
-}
-#googleMapResults {
-  width: 600px;
-=======
 nav {
   border-bottom: .1em solid #808080;
 }
@@ -90,30 +80,21 @@ option {
 
 #polarContainer {
 display: block;
-width: 60em;
-height: 12em;
+max-width: 100%;
 margin: .5em auto;
 padding: 0;
-background-color: #808080;
 }
 
 #polar1, #polar2, #polar3, #polar4, #polar5 {
-  display: inline-block;
   text-align: center;
   vertical-align: middle;
   margin: 0 auto;
   padding: 0;
-  width: 11.8em;
-  height: 11.8em;
-  background-color: #808080;
+  max-width: 100%;
+  /*background-color: #808080;*/
 }
 
-#polar2Canvas, #polar2Canvas, #polar2Canvas, #polar2Canvas, #polar1Canvas {
-  text-align: center;
-  vertical-align: middle;
-  margin: 0 auto;
-  padding: 0;
-  width: 11.75em;
-  height: 11.75em;
->>>>>>> e9ad32cf9a43ea7c08f6a72c6c20ee3510a03c56
+#polar1Canvas, #polar2Canvas, #polar3Canvas, #polar4Canvas, #polar5Canvas {
+  border: .1em solid #808080;
+  display: inline-block;
 }
