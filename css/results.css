@@ -2,9 +2,25 @@ nav {
   border-bottom: .1em solid #808080;
 }
 
+#instruction {
+  border: .1em solid #808080;
+  background-color: #808080;
+  text-align: center;
+  vertical-align: middle;
+  margin: .3em auto;
+  padding: .5em;
+}
+
+#instruction > p {
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 1em;
+  background-color: #808080;
+  color: #FFFFFF;
+}
+
 #searchContainer {
   display: block;
-  height: 12em;
   width: 60em;
 }
 
@@ -17,9 +33,7 @@ form {
 fieldset {
   display: block;
   width: 100%;
-  margin: auto;
-  margin-top: .3em;
-  margin-bottom: .3em;
+  margin: .3em auto;
 }
 
 legend {
@@ -35,31 +49,18 @@ legend {
 
 input {
   display: block;
+  width: 16em;
   text-align: center;
   vertical-align: middle;
   margin: .5em auto;
-  padding: 1em;
-}
-
-#dropdown {
-  display: inline-block;
-  margin: 0 41.8%;
-  padding: .5em;
-}
-
-option {
-  width: .5em;
-  height: .5em;
-  font-family: sans-serif;
-  font-size: 1.25em;
-  background-color: #808080;
-  color: #FFFFFF;
+  padding: 1.25em;
 }
 
 #mapContainer {
+  display: block;
   width: 60em;
   height: 30em;
-  margin-top: .3em;
+  margin: .3em auto;
 }
 
 #googlemapsbackground {
@@ -74,7 +75,7 @@ option {
   display: block;
   width: 60em;
   height: 30em;
-  margin-top: 1em;
+  margin: .3em auto;
   border: .1em solid #808080;
 }
 
@@ -91,10 +92,22 @@ padding: 0;
   margin: 0 auto;
   padding: 0;
   max-width: 100%;
-  /*background-color: #808080;*/
 }
 
 #polar1Canvas, #polar2Canvas, #polar3Canvas, #polar4Canvas, #polar5Canvas {
   border: .1em solid #808080;
-  display: inline-block;
+  max-width: 100%;
+}
+
+#pcn1, #pcn2, #pcn3, #pcn4, #pcn5 {
+  border: .1em solid #808080;
+  font-family: sans-serif;
+  font-size: 2em;
+  background-color: #808080;
+  color: #FFFFFF;
+  text-align: center;
+  vertical-align: middle;
+  height: 1.25em;
+  margin: .3em auto;
+  max-width: 100%;
 }
