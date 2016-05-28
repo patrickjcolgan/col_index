@@ -162,6 +162,7 @@ document.getElementById('indexSearch').addEventListener('submit', function(event
   }
 
   pushName();
+  drop();
   barChartData();
   barChartResults();
   // polarChartData();
@@ -196,3 +197,50 @@ matchInput = function(range) {
     }
   }
 };
+
+var markers = [];
+var map;
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('googlemapsbackground'), {
+    zoom: 2,
+    center: {lat: 39.8282, lng: -98.5795},
+    mapTypeId: google.maps.MapTypeId.HYBRID
+  });
+}
+function drop() {
+  clearMarkers();
+  for (j = 0; j < latLngArr.length; j++) {
+    addMarkerWithTimeout(latLngArr[j], j * 0);
+  }
+};
+
+function addMarkerWithTimeout(position, timeout) {
+  window.setTimeout(function() {
+    // var contentString = name2arr[c];
+    var infowindow = new google.maps.InfoWindow({
+      // content: contentString
+    });
+    var bounds = new google.maps.LatLngBounds(),
+      marker = new google.maps.Marker({
+        position: position,
+        map: map,
+        animation: google.maps.Animation.DROP,
+      });
+    marker.addListener('mouseover', function(){
+      infowindow.open(map, marker);
+    });
+
+    bounds.extend(marker.getPosition());
+    markers.push(marker);
+    map.fitBounds(bounds);
+    map.setZoom(4);
+  }, timeout);
+}
+
+function clearMarkers() {
+  for (var j = 0; j < markers.length; j++) {
+    markers[j].setMap(null);
+  }
+  markers = [];
+}
