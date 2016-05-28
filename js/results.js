@@ -74,7 +74,6 @@ var data = {
 //Polar Chart - pull data
 polarChartData = function(randomArrObj) {
   var anotherArray = Object.keys(randomArrObj).splice(5);
-  console.log(anotherArray);
   anotherArray.splice(6, 2);
   var polarData = {
     datasets: [{
@@ -97,7 +96,6 @@ polarChartData = function(randomArrObj) {
 };
 //Polar Chart - create
 polarChartResults = function(id, obj) {
-  console.log(id);
   var ctx = document.getElementById(id).getContext('2d');
   new Chart(ctx, {
     data: polarChartData(obj), //call&return chart data for each Obj
@@ -109,12 +107,10 @@ polarChartResults = function(id, obj) {
 var rand = [];
 
 function randomizer() {
-  console.log(resultsArr);
   var r = Math.floor(Math.random() * resultsArr.length);
   if (rand.indexOf(r) === -1) {
     rand.push(r);
     randomArr.push(resultsArr[r]);
-    console.log(randomArr);
     latLngArr[ran].lat = resultsArr[ran].latitude;
     latLngArr[ran].lng = resultsArr[ran].longitude;
   }
@@ -123,7 +119,6 @@ function randomizer() {
 function pushName() {
   for (var p = 0; p < randomArr.length; p++) {
     nameArr.push(randomArr[p].metroArea);
-    console.log(nameArr[p]);
     polarNames[p].textContent = nameArr[p];
   }
 }
@@ -141,37 +136,30 @@ document.getElementById('indexSearch').addEventListener('submit', function(event
   }
   if (resultsArr.length < 5) {
     matchInput(5000);
-    console.log('5k');
     matchInput(15000);
-    console.log('15k');
     matchInput(25000);
-    console.log('25k');
   }
   for (ran = 0; ran < 5; ran++) {
     if (resultsArr.length > 5) {
-      console.log('randomizer called');
       randomizer();
     }
   }
   if (resultsArr.length < 5) {
-    console.log('into the less than 5');
     for (rem2 = 0; rem2 < resultsArr.length; rem2++) {
       randomArr.push(resultsArr[rem2]);
-      console.log('name has been pushed');
     }
   }
 
   pushName();
   drop();
+  document.getElementById('chart').removeAttribute('hidden');
   barChartData();
   barChartResults();
   // polarChartData();
   //Scott: for loop iterate over arrays & call polarChartData with arguments
   for (idx in randomArr) {
     polarChartResults(elCR[idx].id, randomArr[idx]);
-    console.log(elCR[idx], randomArr[idx]);
   }
-  console.log('Script complete');
 });
 
 //checks for duplications in resultsArr
@@ -204,10 +192,14 @@ var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('googlemapsbackground'), {
     zoom: 2,
-    center: {lat: 39.8282, lng: -98.5795},
+    center: {
+      lat: 39.8282,
+      lng: -98.5795
+    },
     mapTypeId: google.maps.MapTypeId.HYBRID
   });
 }
+
 function drop() {
   clearMarkers();
   for (j = 0; j < latLngArr.length; j++) {
@@ -227,7 +219,7 @@ function addMarkerWithTimeout(position, timeout) {
         map: map,
         animation: google.maps.Animation.DROP,
       });
-    marker.addListener('mouseover', function(){
+    marker.addListener('mouseover', function() {
       infowindow.open(map, marker);
     });
 
