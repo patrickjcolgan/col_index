@@ -5,7 +5,7 @@
 Cody Hulsey_
 Jeff Torres_
 Patrick Colgan_
- 
+
 
 ## Problem Domain:
 You have been hired by Code Fellows, a world-class code school training web and mobile developers in industry best practices, in-demand frameworks and technologies, and more. A typical Code Fellows graduate is overwhelmed by job offers and doesn't have time to do research on the cost of living in a particular city. Code Fellows would like you to create an app that displays potential locations that these graduates can afford to live based on the job offers they receive.
@@ -37,8 +37,11 @@ Shows how much you're likely to spend in each city for the following categories:
 
 ### Google Maps API
 + Home Page
-  +
+  + Synced the Google Maps API
+  + Integrated the addMarkerWithTimeout method, so that the markers drop on the page every 8 seconds.
+  + Applied the LatLngBounds method, so that the map zooms into the location after the marker drops.
 
 
 + Results Page
-  +
+  + Synced the Google Maps API
+  + Once the user enters their current/expect income, the map pulls the latitude and longitude values from the latLngArr. This results in markers populating on the map. 
