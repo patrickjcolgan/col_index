@@ -13,6 +13,16 @@ fieldset {
   margin-top: .3em;
   }
 
+fieldset > a {
+  display: block;
+  font-family: sans-serif;
+  font-size: 1.25em;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: middle;
+  color: #808080;
+  }
+
 legend {
   display: block;
   width: 100%;
@@ -22,21 +32,4 @@ legend {
   background-color: #808080;
   color: #FFFFFF;
   text-align: center;
-}
-
-input, textarea {
-  display: block;
-  text-align: center;
-  vertical-align: middle;
-  margin: .5em auto;
-  padding: .5em;
-}
-
-#sub {
-  background-color: #808080
-  color: #FFFFFF;
-  width: 10em;
-  font-family: sans-serif;
-  font-size: .75em;
-  font-weight: bold;
 }
