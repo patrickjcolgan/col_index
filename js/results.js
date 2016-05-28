@@ -3,6 +3,22 @@ var resultsArr = [];
 var randomArr = [];
 var nameArr = [];
 var polarArr = [];
+var latLngArr = [{
+  lat: '',
+  lng: ''
+}, {
+  lat: '',
+  lng: ''
+}, {
+  lat: '',
+  lng: ''
+}, {
+  lat: '',
+  lng: ''
+}, {
+  lat: '',
+  lng: ''
+}, ];
 var pc = document.getElementById('polarContainer');
 var elCR = [
   document.getElementById('polar1Canvas'),
@@ -99,6 +115,8 @@ function randomizer() {
     rand.push(r);
     randomArr.push(resultsArr[r]);
     console.log(randomArr);
+    latLngArr[ran].lat = resultsArr[ran].latitude;
+    latLngArr[ran].lng = resultsArr[ran].longitude;
   }
 }
 
