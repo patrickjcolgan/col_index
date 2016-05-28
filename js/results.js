@@ -3,21 +3,27 @@ var resultsArr = [];
 var randomArr = [];
 var nameArr = [];
 var polarArr = [];
-
 var pc = document.getElementById('polarContainer');
 var elCR = [
-  document.getElementById('polar5Canvas'),
-  document.getElementById('polar4Canvas'),
-  document.getElementById('polar3Canvas'),
+  document.getElementById('polar1Canvas'),
   document.getElementById('polar2Canvas'),
-  document.getElementById('polar1Canvas')
+  document.getElementById('polar3Canvas'),
+  document.getElementById('polar4Canvas'),
+  document.getElementById('polar5Canvas')
 ];
 var elCCR = [
-  document.getElementById('polar5'),
-  document.getElementById('polar4'),
-  document.getElementById('polar3'),
+  document.getElementById('polar1'),
   document.getElementById('polar2'),
-  document.getElementById('polar1')
+  document.getElementById('polar3'),
+  document.getElementById('polar4'),
+  document.getElementById('polar5')
+];
+var polarNames = [
+  document.getElementById('pcn1'),
+  document.getElementById('pcn2'),
+  document.getElementById('pcn3'),
+  document.getElementById('pcn4'),
+  document.getElementById('pcn5')
 ];
 
 barChartData = function() {
@@ -32,22 +38,19 @@ barChartResults = function() {
   var barCanvas = new Chart(ctx, {
     type: 'bar',
     data: data,
-    scaleOverride: true,
-    scaleSteps: 10,
-    scaleStepWidth: 50,
-    scaleStartValue: 0
   });
 };
+
 // //Bar Chart Data
 var data = {
   labels: nameArr,
   datasets: [{
     label: 'Median Income for Metro Area',
-    backgroundColor: 'rgba(255,99,132,0.2)',
-    borderColor: 'rgba(255,99,132,1)',
+    backgroundColor: 'rgba(128,128,128,0.2)',
+    borderColor: 'rgba(255,255,255,1)',
     borderWidth: 1,
-    hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-    hoverBorderColor: 'rgba(255,99,132,1)',
+    hoverBackgroundColor: 'rgba(0,0,0,1)',
+    hoverBorderColor: 'rgba(128,128,128,1)',
     data: [],
   }]
 };
@@ -67,7 +70,7 @@ polarChartData = function(randomArrObj) {
         '#E7E9ED',
         '#36A2EB'
       ],
-      label: 'My dataset' // for legend
+      label: [] // for legend
     }],
     labels: anotherArray
   };
@@ -90,23 +93,26 @@ polarChartResults = function(id, obj) {
 var rand = [];
 
 function randomizer() {
-  r = Math.floor(Math.random() * resultsArr.length);
+  console.log(resultsArr);
+  var r = Math.floor(Math.random() * resultsArr.length);
   if (rand.indexOf(r) === -1) {
     rand.push(r);
-    randomArr.push(resultsArr[rand.length - 1]);
+    randomArr.push(resultsArr[r]);
+    console.log(randomArr);
   }
 }
 
 function pushName() {
-  for (var p = 0; p < randomArr.length; p++)
+  for (var p = 0; p < randomArr.length; p++) {
     nameArr.push(randomArr[p].metroArea);
+    console.log(nameArr[p]);
+    polarNames[p].textContent = nameArr[p];
+  }
 }
-
 //event listener
 document.getElementById('indexSearch').addEventListener('submit', function(event) {
   event.preventDefault();
   userInput = event.target.income.value;
-  var locationInput = event.target.location.value;
   if (userInput < 35000) {
     alert('Please enter at least 40k, but click ok to see if there\'s data available.');
     matchInput(1000);

@@ -47,13 +47,19 @@ nav{
 nav > a {
   display: inline-block;
   width: 8.5em;
-  font-family: 'Georgia', serif;
-  font-size: 1em;
+  font-family: sans-serif;
+  font-size: 1.25em;
   text-align: center;
-  color: #000000;
+  color: #808080;
   text-decoration: none;
   margin: auto;
   padding: .3125em;
+}
+
+main {
+  display: block;
+  margin: .3em auto;
+  padding: 0;
 }
 
 footer {
