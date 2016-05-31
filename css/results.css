@@ -1,0 +1,113 @@
+nav {
+  border-bottom: .1em solid #808080;
+}
+
+#instruction {
+  border: .1em solid #808080;
+  background-color: #808080;
+  text-align: center;
+  vertical-align: middle;
+  margin: .3em auto;
+  padding: .5em;
+}
+
+#instruction > p {
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 1em;
+  background-color: #808080;
+  color: #FFFFFF;
+}
+
+#searchContainer {
+  display: block;
+  width: 60em;
+}
+
+form {
+  width: 60em;
+  margin: 0 auto;
+  padding: 0;
+}
+
+fieldset {
+  display: block;
+  width: 100%;
+  margin: .3em auto;
+}
+
+legend {
+  display: block;
+  width: 100%;
+  border: .1em solid #808080;
+  font-family: sans-serif;
+  font-size: 1.25em;
+  background-color: #808080;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+input {
+  display: block;
+  width: 16em;
+  text-align: center;
+  vertical-align: middle;
+  margin: .5em auto;
+  padding: 1.25em;
+}
+
+#mapContainer {
+  display: block;
+  width: 60em;
+  height: 30em;
+  margin: .3em auto;
+}
+
+#googlemapsbackground {
+  height: 30em;
+  width: 60em;
+  box-sizing: border-box;
+  display: block;
+  border: .1em solid #808080;
+}
+
+#barContainer {
+  display: block;
+  width: 60em;
+  height: 30em;
+  margin: .3em auto;
+  border: .1em solid #808080;
+}
+
+#polarContainer {
+display: block;
+max-width: 100%;
+margin: .5em auto;
+padding: 0;
+}
+
+#polar1, #polar2, #polar3, #polar4, #polar5 {
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 100%;
+}
+
+#polar1Canvas, #polar2Canvas, #polar3Canvas, #polar4Canvas, #polar5Canvas {
+  border: .1em solid #808080;
+  max-width: 100%;
+}
+
+#pcn1, #pcn2, #pcn3, #pcn4, #pcn5 {
+  border: .1em solid #808080;
+  font-family: sans-serif;
+  font-size: 2em;
+  background-color: #808080;
+  color: #FFFFFF;
+  text-align: center;
+  vertical-align: middle;
+  height: 1.25em;
+  margin: .3em auto;
+  max-width: 100%;
+}
